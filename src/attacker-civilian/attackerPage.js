@@ -41,7 +41,19 @@ const AttackerPage = () => {
   };
 
   return (
-    <div style={{ position: 'relative', height: '100vh', width: '100vw' }}>
+    <div
+      style={{
+        position: 'relative',
+        height: '100vh',
+        width: '100vw',
+        backgroundImage: 'url(https://images.unsplash.com/photo-1689443111384-1cf214df988a?q=80&w=3270&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)', 
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        color: 'white',
+        fontFamily: 'Arial, sans-serif',
+        overflow: 'hidden',
+      }}
+    >
       <div
         style={{
           position: 'absolute',
@@ -57,19 +69,35 @@ const AttackerPage = () => {
         <div
           key={index}
           onClick={(e) => handleAttack(civ.username, e)}
+          // style={{
+          //   position: 'absolute',
+          //   left: `${civ.x}px`,
+          //   top: `${civ.y}px`,
+          //   width: '50px',
+          //   height: '50px',
+          //   borderRadius: '50%',
+          //   backgroundColor: '#5E9DFC',
+          //   color: 'white',
+          //   display: 'flex',
+          //   justifyContent: 'center',
+          //   alignItems: 'center',
+          //   cursor: 'pointer',
+          //   boxShadow: '0 8px 24px rgba(94, 159, 252, 0.5)',
+          // }}
           style={{
             position: 'absolute',
             left: `${civ.x}px`,
             top: `${civ.y}px`,
-            width: '50px',
-            height: '50px',
+            width: '60px',
+            height: '60px',
             borderRadius: '50%',
-            backgroundColor: '#5E9DFC',
+            backgroundColor: '#B63ED9',
             color: 'white',
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
-            cursor: 'pointer',
+            boxShadow: '0 8px 24px rgba(182, 62, 217, 0.5)',
+            transition: 'all 0.3s ease',
           }}
         >
           {civ.username[0].toUpperCase()}
