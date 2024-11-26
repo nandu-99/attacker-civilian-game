@@ -4,6 +4,8 @@ import UserForm from './gameComponents/userform';
 import { io } from "socket.io-client";
 import JoinPage from './attacker-civilian/joinPage';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import CivilianPage from './attacker-civilian/civilianPage';
+import AttackerPage from './attacker-civilian/attackerPage';
 
 const App = ()=>{
   const [role, setRole] = useState('');
@@ -19,8 +21,8 @@ const App = ()=>{
       <Routes>
         <Route path="/" element={<Navigate to="/join" />} />
         <Route path="/join" element={<JoinPage onJoin={handleJoin} />} />
-        {/* <Route path="/civilian" element={role === 'civilian' ? <CivilianPage username={username} /> : <Navigate to="/join" />} />
-        <Route path="/attacker" element={role === 'attacker' ? <AttackerPage username={username} /> : <Navigate to="/join" />} /> */}
+         <Route path="/civilian" element={role === 'civilian' ? <CivilianPage username={username} /> : <Navigate to="/join" />} />
+        <Route path="/attacker" element={role === 'attacker' ? <AttackerPage username={username} /> : <Navigate to="/join" />} />
       </Routes>
     </Router>
   );
