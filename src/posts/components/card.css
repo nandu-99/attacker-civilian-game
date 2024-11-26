@@ -1,0 +1,63 @@
+p{
+    font-size: 16px;
+    font-weight: 600;
+}
+.cards{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.main{
+    display: flex;
+    flex-direction: column;
+    width: 700px;
+    border: 2px solid #E9B305;
+    padding: 20px;
+    gap: 20px;
+    border-radius: 10px;
+    box-shadow: #E9B305;
+}
+
+.title{
+    display: flex;
+    justify-content: space-between;
+}
+
+.left{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.left h4{
+    font-size: 24px;
+    color: #4337C9;
+}
+
+.title p{
+    color: #6366F1;
+}
+
+
+.extra{
+    display: flex;
+    justify-content: space-between;
+}
+
+.likes-comments{
+    display: flex;
+    gap: 20px;
+}
+
+.likes{
+    color: #ED4D9C;
+}
+
+.comments{
+    color: #3B81F6;
+}
+
+.share{
+    color: #21C55D;
+}
