@@ -6,6 +6,7 @@ import JoinPage from './attacker-civilian/joinPage';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import CivilianPage from './attacker-civilian/civilianPage';
 import AttackerPage from './attacker-civilian/attackerPage';
+import WinnerAndLeaderboardPage from './attacker-civilian/winnerPage';
 
 const App = ()=>{
   const [role, setRole] = useState('');
@@ -23,6 +24,7 @@ const App = ()=>{
         <Route path="/join" element={<JoinPage onJoin={handleJoin} />} />
          <Route path="/civilian" element={role === 'civilian' ? <CivilianPage username={username} /> : <Navigate to="/join" />} />
         <Route path="/attacker" element={role === 'attacker' ? <AttackerPage username={username} /> : <Navigate to="/join" />} />
+        <Route path="/winner" element={<WinnerAndLeaderboardPage />} />
       </Routes>
     </Router>
   );
