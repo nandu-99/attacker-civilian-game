@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { io } from 'socket.io-client';
+import socket from './socket';
 
-const socket = io('http://localhost:3000');
 
 const AttackerPage = () => {
   const [civilians, setCivilians] = useState([
@@ -13,6 +13,7 @@ const AttackerPage = () => {
 
   useEffect(() => {
     socket.on('/civilian/connect', (newCivilians) => {
+      console.log(newCivilians)
       setCivilians(newCivilians);
     });
 
@@ -106,12 +107,12 @@ const AttackerPage = () => {
             width: '60px',
             height: '60px',
             borderRadius: '50%',
-            backgroundColor: '#3D8BEF', // Blue color for the civilian ball
+            backgroundColor: '#c28a5f',
             color: 'white',
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
-            boxShadow: '0 8px 24px rgba(61, 139, 239, 0.5)', // Blue shadow for consistency
+            boxShadow: '0 8px 24px rgba(194, 138, 95, 0.5)', 
             transition: 'all 0.3s ease',
           }}
         >

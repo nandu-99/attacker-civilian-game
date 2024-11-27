@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { io } from 'socket.io-client';
+import socket from './socket';
 
-const socket = io('http://localhost:3000');
 
 const CivilianPage = () => {
   const [position, setPosition] = useState({ x: 0, y: 0 });
@@ -13,6 +13,7 @@ const CivilianPage = () => {
     });
 
     socket.on('/score', (newScore) => {
+      console.log(newScore)
       setScore(newScore);
     });
 
@@ -54,7 +55,7 @@ const CivilianPage = () => {
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundAttachment: 'fixed',
-          zIndex: -1, // Ensure the background stays behind the content
+          zIndex: -1, 
         }}
       >
         {/* Semi-transparent overlay */}
@@ -65,7 +66,7 @@ const CivilianPage = () => {
             left: 0,
             right: 0,
             bottom: 0,
-            backgroundColor: 'rgba(0, 0, 0, 0.5)', // 50% opacity black overlay
+            backgroundColor: 'rgba(0, 0, 0, 0.5)', 
           }}
         />
       </div>
