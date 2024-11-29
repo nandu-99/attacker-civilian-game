@@ -5,9 +5,9 @@ import socket from './socket';
 
 const AttackerPage = () => {
   const [civilians, setCivilians] = useState([
-    { username: 'JohnDoe', x: 100, y: 150 },
-    { username: 'JaneSmith', x: 200, y: 300 },
-    { username: 'BobBrown', x: 400, y: 250 },
+    { username: 'JohnDoe', position: {x: 100, y: 150} },
+    { username: 'JaneSmith', position: {x: 200, y: 300} },
+    { username: 'BobBrown', position: {x: 400, y: 250} },
   ]);
   const [score, setScore] = useState(0);
 
@@ -96,14 +96,14 @@ const AttackerPage = () => {
       </div>
 
       {/* Civilians */}
-      {civilians.map((civ, index) => (
+      {civilians.length>0 && civilians.map((civ, index) => (
         <div
           key={index}
           onClick={(e) => handleAttack(civ.username, e)}
           style={{
             position: 'absolute',
-            left: `${civ.x}px`,
-            top: `${civ.y}px`,
+            left: `${civ.position.x}px`,
+            top: `${civ.position.y}px`,
             width: '60px',
             height: '60px',
             borderRadius: '50%',

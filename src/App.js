@@ -24,7 +24,7 @@ const App = ()=>{
         <Route path="/join" element={<JoinPage onJoin={handleJoin} />} />
          <Route path="/civilian" element={role === 'civilian' ? <CivilianPage username={username} /> : <Navigate to="/join" />} />
         <Route path="/attacker" element={role === 'attacker' ? <AttackerPage username={username} /> : <Navigate to="/join" />} />
-        <Route path="/winner" element={<WinnerAndLeaderboardPage />} />
+        <Route path="/leaderboard" element={<WinnerAndLeaderboardPage />} />
       </Routes>
     </Router>
   );

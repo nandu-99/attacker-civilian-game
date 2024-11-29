@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { io } from 'socket.io-client';
 import socket from './socket';
 
 
 const CivilianPage = () => {
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [score, setScore] = useState(0);
+  const [disconnected, setDisconnected] = useState(false);
 
   useEffect(() => {
     socket.on('/location', (location) => {
@@ -13,7 +13,7 @@ const CivilianPage = () => {
     });
 
     socket.on('/score', (newScore) => {
-      console.log(newScore)
+      console.log('Score updated:', newScore);
       setScore(newScore);
     });
 
@@ -23,6 +23,12 @@ const CivilianPage = () => {
     };
   }, []);
 
+  useEffect(() => {
+    if (score < 0) {
+      setDisconnected(true);
+    }
+  }, [score]);
+
   const handleMove = (e) => {
     const x = e.clientX;
     const y = e.clientY;
@@ -30,6 +36,29 @@ const CivilianPage = () => {
     setPosition({ x, y });
     socket.emit('/location/change', { x, y });
   };
+
+  if (disconnected) {
+    return (
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+          height: '100vh',
+          backgroundColor: '#000',
+          color: '#FF6B6B',
+          fontFamily: 'Arial, sans-serif',
+          textAlign: 'center',
+        }}
+      >
+        <h1>You have been disconnected!</h1>
+        <p style={{ marginTop: '10px' }}>
+          Reason: Your score dropped below zero. Refresh the page to reconnect.
+        </p>
+      </div>
+    );
+  }
 
   return (
     <div
@@ -40,6 +69,7 @@ const CivilianPage = () => {
         color: 'white',
         fontFamily: 'Arial, sans-serif',
         overflow: 'hidden',
+        cursor: 'pointer',
       }}
       onClick={handleMove}
     >
@@ -51,7 +81,8 @@ const CivilianPage = () => {
           left: 0,
           right: 0,
           bottom: 0,
-          backgroundImage: 'url(https://images.unsplash.com/photo-1689443111130-6e9c7dfd8f9e?q=80&w=3270&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)',
+          backgroundImage:
+            'url(https://images.unsplash.com/photo-1689443111130-6e9c7dfd8f9e?q=80&w=3270&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundAttachment: 'fixed',
@@ -66,7 +97,7 @@ const CivilianPage = () => {
             left: 0,
             right: 0,
             bottom: 0,
-            backgroundColor: 'rgba(0, 0, 0, 0.5)', 
+            backgroundColor: 'rgba(0, 0, 0, 0.6)',
           }}
         />
       </div>
@@ -86,7 +117,7 @@ const CivilianPage = () => {
           justifyContent: 'center',
           alignItems: 'center',
           boxShadow: '0 8px 24px rgba(182, 62, 217, 0.5)',
-          transition: 'all 0.3s ease',
+          transition: 'transform 0.3s ease, top 0.3s ease, left 0.3s ease',
         }}
       >
         Me
